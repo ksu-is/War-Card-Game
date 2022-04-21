@@ -36,7 +36,7 @@ def shuffle():
   # Output Card to Screen
   dealer_label.config(text=card)
   
-    # Grab Random Card
+  # Grab Random Card
   card = random.choice(deck)
   # Remove Card from Deck
   deck.remove(card)
@@ -45,7 +45,35 @@ def shuffle():
   # Output Card to Screen
   player_label.config(text=card)
   
+  # Remaining Cards in Title Bar
+  root.title(f'Card Deck - {len(deck)} Cards Left')
   
+# Deal Cards
+def deal_cards():
+    try:
+  # Get Dealer Card
+        card = random.choice(deck)
+  # Remove Card from Deck
+        deck.remove(card)
+  # Append Card to Dealer List
+        player.append(card)
+  # Output Card to Screen
+        player_label.config(text=card)
+    
+  # Get Player Card
+        card = random.choice(deck)
+  # Remove Card from Deck
+        deck.remove(card)
+  # Append Card to Dealer List
+        player.append(card)
+  # Output Card to Screen
+        player_label.config(text=card)
+  
+  # Remaining Cards in Title Bar
+        root.title(f'Card Deck - {len(deck)} Cards Left')
+    
+    except:
+            root.title(f'Card Deck - No Cards In Deck')
   
       
 
@@ -70,7 +98,7 @@ player_label.pack(pady=20)
 shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
 shuffle_button.pack(pady=20)
 
-card_button = Button(root, text="Get Cards", font=("Helvetica", 14))
+card_button = Button(root, text="Get Cards", font=("Helvetica", 14), command=deal_cards)
 card_button.pack(pady=20)
 
 
