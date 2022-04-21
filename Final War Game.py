@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 
 
 root = Tk()
@@ -21,7 +22,31 @@ def shuffle():
     for value in values:
       deck.append(f'{value}_of_{suit}')
       
-  print(deck)
+  # Create Players
+  global dealer, player
+  dealer = []
+  player = []
+  
+  # Grab Random Card
+  card = random.choice(deck)
+  # Remove Card from Deck
+  deck.remove(card)
+  # Append Card to Dealer List
+  dealer.append(card)
+  # Output Card to Screen
+  dealer_label.config(text=card)
+  
+    # Grab Random Card
+  card = random.choice(deck)
+  # Remove Card from Deck
+  deck.remove(card)
+  # Append Card to Dealer List
+  player.append(card)
+  # Output Card to Screen
+  player_label.config(text=card)
+  
+  
+  
       
 
 my_frame = Frame(root, bg="green")
