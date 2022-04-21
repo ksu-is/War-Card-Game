@@ -7,6 +7,23 @@ root.iconbitmap()
 root.geometry("900x500")
 root.configure(background="green")
 
+# Shuffle Cards
+def shuffle():
+  # Define Deck
+  suits = ["diamonds", "clubs", "hearts", "spades"]
+  values = range(2, 15)
+  # 11=Jack, 12=Queen, 13=King, 14=Ace
+  
+  global deck
+  deck =[]
+  
+  for suit in suits:
+    for value in values:
+      deck.append(f'{value}_of_{suit}')
+      
+  print(deck)
+      
+
 my_frame = Frame(root, bg="green")
 my_frame.pack(pady=20)
 
@@ -25,7 +42,7 @@ player_label = Label(player_frame, text='')
 player_label.pack(pady=20)
 
 # Create Buttons
-shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14))
+shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
 shuffle_button.pack(pady=20)
 
 card_button = Button(root, text="Get Cards", font=("Helvetica", 14))
