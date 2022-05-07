@@ -10,8 +10,8 @@ Sprint #1 Project Goals:
 ✓7. Start making the basic GUI and layout for the game
 ✓8. Create a deck of cards for the game
 ✓9. Create players for the cards to be assigned to and make sure no cards repeart and cards are being counted
-10. Create images for each card to be displayed on the GUI
-11. Create a score list and label
-12. Create code for the rules of the game, an example would be compare cards to see who wins
-13. Create code for running score count 
-14. Add text for player/dealer win and tie
+✓10. Create images for each card to be displayed on the GUI
+✓11. Create a score list and label
+✓12. Create code for the rules of the game, an example would be compare cards to see who wins
+✓13. Create code for running score count 
+✓14. Add text for player/dealer win and tie
