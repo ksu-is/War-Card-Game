@@ -9,6 +9,21 @@ root.iconbitmap()
 root.geometry("900x500")
 root.configure(background="green")
 
+# Resize cards
+def resize_cards(card):
+      # Open images
+      our_card_img = Image.open(card)
+
+      # Resize image
+      our_card_resize_image = our_card_img.resize((150, 218))
+
+      #output card
+      global our_card_image
+      our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+
+      # Return card
+      return our_card_image
+
 # Shuffle Cards
 def shuffle():
   # Define Deck
@@ -35,6 +50,10 @@ def shuffle():
   # Append Card to Dealer List
   dealer.append(card)
   # Output Card to Screen
+  global dealer_image
+  dealer_image = resize_cards(f'images/cards/{card}.png')
+  dealer_label.config(image=dealer_image)
+
   dealer_label.config(text=card)
   
   # Grab Random Card
@@ -44,6 +63,10 @@ def shuffle():
   # Append Card to Dealer List
   player.append(card)
   # Output Card to Screen
+  global player_image
+  player_image = resize_cards(f'images/cards/{card}.png')
+  player_label.config(image=player_image)
+
   player_label.config(text=card)
   
   # Remaining Cards in Title Bar
@@ -57,9 +80,13 @@ def deal_cards():
   # Remove Card from Deck
         deck.remove(card)
   # Append Card to Dealer List
-        player.append(card)
+        dealer.append(card)
   # Output Card to Screen
-        player_label.config(text=card)
+  # Output Card to Screen
+        global dealer_image
+        dealer_image = resize_cards(f'images/cards/{card}.png')
+        dealer_label.config(image=dealer_image)
+        #dealer_label.config(text=card)
     
   # Get Player Card
         card = random.choice(deck)
@@ -68,7 +95,11 @@ def deal_cards():
   # Append Card to Dealer List
         player.append(card)
   # Output Card to Screen
-        player_label.config(text=card)
+  # Output Card to Screen
+        global player_image
+        player_image = resize_cards(f'images/cards/{card}.png')
+        player_label.config(image=player_image)
+        #player_label.config(text=card)
   
   # Remaining Cards in Title Bar
         root.title(f'Card Deck - {len(deck)} Cards Left')
