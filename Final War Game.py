@@ -1,3 +1,4 @@
+from itertools import count
 from tkinter import *
 import random
 from PIL import Image, ImageTk
@@ -111,7 +112,15 @@ def deal_cards():
         score(dealer_card, player_card)
     
     except:
-            root.title(f'Card Deck - No Cards In Deck')
+            # Tie
+            if dscore.count("x") == pscore.count("x"):
+                  root.title(f'Card Deck - No Cards In Deck! Tie! {dscore.count("x")} to {pscore.count("x")}')
+            # Dealer Wins
+            elif dscore.count("x") > pscore.count("x"):
+                  root.title(f'Card Deck - No Cards In Deck! Dealer Wins! {dscore.count("x")} to {pscore.count("x")}')
+            # Player Wins
+            else:
+                  root.title(f'Card Deck - No Cards In Deck! Player Wins! {pscore.count("x")} to {dscore.count("x")}')
   
 def score(dealer_card, player_card):
       # Split out numbers
@@ -124,8 +133,12 @@ def score(dealer_card, player_card):
 
       elif dealer_card > player_card:
             score_label.config(text="Dealer Wins!")
+            dscore.append("x")
       else:
             score_label.config(text="Player Wins!")
+            pscore.append("x")
+
+      root.title(f'Card Deck - {len(deck)} Cards Left |     Dealer: {dscore.count("x")}      Player: {pscore.count("x")}')
       
 
 my_frame = Frame(root, bg="green")
