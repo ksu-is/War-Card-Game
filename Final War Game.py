@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 root = Tk()
 root.title('Card Deck')
 root.iconbitmap()
-root.geometry("900x500")
+root.geometry("900x550")
 root.configure(background="green")
 
 # Resize cards
@@ -39,38 +39,43 @@ def shuffle():
       deck.append(f'{value}_of_{suit}')
       
   # Create Players
-  global dealer, player
+  global dealer, player, dscore, pscore
   dealer = []
   player = []
+  dscore = []
+  pscore = []
   
   # Grab Random Card
-  card = random.choice(deck)
+  dealer_card = random.choice(deck)
   # Remove Card from Deck
-  deck.remove(card)
+  deck.remove(dealer_card)
   # Append Card to Dealer List
-  dealer.append(card)
+  dealer.append(dealer_card)
   # Output Card to Screen
   global dealer_image
-  dealer_image = resize_cards(f'images/cards/{card}.png')
+  dealer_image = resize_cards(f'images/cards/{dealer_card}.png')
   dealer_label.config(image=dealer_image)
 
-  dealer_label.config(text=card)
+  #dealer_label.config(text=card)
   
   # Grab Random Card
-  card = random.choice(deck)
+  player_card = random.choice(deck)
   # Remove Card from Deck
-  deck.remove(card)
+  deck.remove(player_card)
   # Append Card to Dealer List
-  player.append(card)
+  player.append(player_card)
   # Output Card to Screen
   global player_image
-  player_image = resize_cards(f'images/cards/{card}.png')
+  player_image = resize_cards(f'images/cards/{player_card}.png')
   player_label.config(image=player_image)
 
-  player_label.config(text=card)
+  #player_label.config(text=card)
   
   # Remaining Cards in Title Bar
   root.title(f'Card Deck - {len(deck)} Cards Left')
+
+  # Get the score
+  score(dealer_card, player_card)
   
 # Deal Cards
 def deal_cards():
@@ -107,6 +112,12 @@ def deal_cards():
     except:
             root.title(f'Card Deck - No Cards In Deck')
   
+def score(dealer_card, player_card):
+      # Split out numbers
+      dealer_card = int(dealer_card.split("_", 1)[0])
+      player_card = int(player_card.split("_", 1)[0])
+
+      # Compare Card Numbers
       
 
 my_frame = Frame(root, bg="green")
@@ -125,6 +136,10 @@ dealer_label.pack(pady=20)
 
 player_label = Label(player_frame, text='')
 player_label.pack(pady=20)
+
+# Create Score Label
+score_label = Label(root, text="", font=("Helvetica", 14))
+score_label.pack(pady=20)
 
 # Create Buttons
 shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
